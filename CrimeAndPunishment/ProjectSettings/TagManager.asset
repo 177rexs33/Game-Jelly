@@ -8,7 +8,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Desk
   - Water
   - UI
   - 
@@ -40,4 +40,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Desk
+    uniqueID: 2502839947
+    locked: 0
+  - name: Files
+    uniqueID: 3646460923
+    locked: 0
+  - name: File Information
+    uniqueID: 719256813
+    locked: 0
+  - name: Buttons
+    uniqueID: 1210864115
     locked: 0
