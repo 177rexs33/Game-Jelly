@@ -15,6 +15,7 @@ public class LevelManager : MonoBehaviour
     public TextMeshProUGUI fileDescription;
     public static int columns = 7; /// check that this matches the csv file
     public StampAnimator stampAnimator;
+    public FileAnimator fileAnimator;
 
 
     // Start is called before the first frame update
@@ -64,11 +65,23 @@ public class LevelManager : MonoBehaviour
         StampAnimator animator = stampAnimator.GetComponent<StampAnimator>();
         animator.BlankStamp();
 
+        //Loads in file
+        FileAnimator FA = fileAnimator.GetComponent<FileAnimator>();
+        FA.FileEnter();
+
         /*//debugging
         foreach (Case c in cases) 
         {
             c.PrintCase();
         }*/
+    }
+
+    public void LevelEnd()
+    {
+        //end of level aniamtions or anuything, such as file leaving scvren etc...
+        //Removes Completed File from screen
+        FileAnimator FA = fileAnimator.GetComponent<FileAnimator>();
+        FA.FileExit();
     }
 
 
