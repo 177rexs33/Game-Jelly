@@ -53,3 +53,6 @@ TagManager:
   - name: Buttons
     uniqueID: 1210864115
     locked: 0
+  - name: Laws
+    uniqueID: 1099570091
+    locked: 0
