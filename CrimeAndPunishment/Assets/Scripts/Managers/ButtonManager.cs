@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +11,13 @@ public class ButtonManager : MonoBehaviour
     public Button releaseButton;
     public Button signButton;
     private bool fileAssessment = true;
-    public StampAnimator stampAnimator;
+    public ActualStampAnimator stampAnimator;
+    public TextMeshProUGUI laws;
+    private int page = 1;
+
+    private string firstPage = "Artificial Intelligence Creation:\r\n\tDeath Penalty\r\nArson:\r\n\tFrom 5 to 20 years in prison and 2 \r\n\tmillion in fines\r\nAssault:\r\n\tUp to 2 years in prison and up to 80 \r\n\thours of community service\r\nBlackmail:\r\n\tUp to 1 year in prison\r\nBurglary:\r\n\tUp to 5 years in prison and up to 50 \r\n\tthousand in fines\r\nCounterfeiting:\r\n\tUp to 5 years in prison and 10 million in \r\n\tfines\r\nCloning of an Artficial Intelligence:\r\n\tUp to 2 years in prison and 10 thousand \r\n\tin fines\r\nDisorderly Conduct:\r\n\tUp to 90 days in prison and 5 thousand \r\n\tin fines\r\n";
+    private string secondPage = "Disturbing the Peace:\r\n\tUp to 90 days in prison\r\nDrug Possession:\r\n\t1 year per offense\r\nDrug Trafficking:\r\n\t4 years in prison\r\nFraud:\r\n\t3 years in prison and 90 hours of \r\n\tcommunity service\r\nIdentity Theft:\r\n\t50 years in prison and up to 50 million \r\n\tin fines\r\nKidnapping:\r\n\tThe Death Penalty\r\nManslaughter: Involuntary:\r\n\t2 thousand hours of community \r\n\tservice\r\nManslaughter: Voluntary:\r\n\t40 years in prison\r\nMovement of a Celestial Body:\r\n\tThe Death Penalty\r\nMurder: Premeditated:\r\n\tThe Death Penalty";
+    private string thirdPage = "Murder: Not Premeditated:\t\r\n\t120 years in prison\r\nMurder of an Artificial Intelligence:\r\n\tThe Death Penalty\r\nPlacing Pineapple on Pizza:\r\n\t1 hour of community service per \r\n\toffense\r\nStalking:\r\n\tUp to 5 years in prison and 10 thousand \r\n\tin fines\r\nVandalism:\r\n\t180 days in jail";
 
     // Start is called before the first frame update
     void Awake()
@@ -53,29 +60,62 @@ public class ButtonManager : MonoBehaviour
     public void guiltyButtonPressed()
     {
         //do guilty stamp aniamtion
-        StampAnimator animator = stampAnimator.GetComponent<StampAnimator>();
-        animator.GuiltyStamp();
+        ActualStampAnimator animator = stampAnimator.GetComponent<ActualStampAnimator>();
+        animator.StampingGuilty(); // changte htis to actuall stamp
 
         SetFileAssessment(false);
     }
 
     public void releaseButtonPressed()
     {
+        Debug.Log("button clicked");
+
         //do release stamp animation
-        StampAnimator animator = stampAnimator.GetComponent<StampAnimator>();
-        animator.ReleaseStamp();
+        ActualStampAnimator animator = stampAnimator.GetComponent<ActualStampAnimator>();
+        animator.StampingRelease(); // changte htis to actuall stamp
 
         SetFileAssessment(false);
     }
 
     public void signButtonPressed()
     {
-        //do signature animation
-        // wait a bit, then change to next level
-        // LevelManager.instance.ChangeLevel();
+        //might not need
     }
 
-    /* later, pause menu when presse esc
-    public void escPressed(){}
-    */
+    public void PageForward()
+    {
+        if (page < 3)
+        {
+            page++;
+        }
+
+        UpdatePage();
+    }
+
+    public void PageBackward()
+    {
+        if (page > 1)
+        {
+            page--;
+        }
+
+        UpdatePage();
+    }
+    public void UpdatePage()
+    {
+        if (page == 1)
+        {
+            laws.text = firstPage;
+
+        }
+        else if (page == 2) 
+        {
+            laws.text = secondPage;
+        }
+        else
+        {
+            laws.text = thirdPage;
+        }
+    }
+    
 }

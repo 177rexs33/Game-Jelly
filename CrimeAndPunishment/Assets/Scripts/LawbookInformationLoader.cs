@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Actually the rule sheet loader
 public class LawbookInformationLoader : MonoBehaviour
 {
 
-    public TextAsset lawData; 
+    public TextAsset ruleData; 
 
     // Start is called before the first frame update
     void Start()
@@ -22,8 +23,9 @@ public class LawbookInformationLoader : MonoBehaviour
 
     void ReadCSV()
     {
-        string[] data = lawData.text.Split(new string[] { ",", "\n" }, StringSplitOptions.None);
-        LevelManager.instance.StoreLawData(data);
-        Debug.Log("FileInformationLoader: Law Data stored.");
+        string[] data = ruleData.text.Split(new string[] { ",", "\n" }, StringSplitOptions.None);
+        LevelManager.instance.StoreRuleData(data);
+        Debug.Log("FileInformationLoader: rule sheet Data stored.");
+        LevelManager.instance.LoadLevel();
     }
 }
