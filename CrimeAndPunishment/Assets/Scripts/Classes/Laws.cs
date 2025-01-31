@@ -17,6 +17,6 @@ public class Laws
     public void printLaws()
     {
         string listedLaws = $"{this.lawName} formatingsmormating";
-        Debug.Log(listedLaws);
+        //Debug.Log(listedLaws);
     }
 }

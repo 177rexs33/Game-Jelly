@@ -25,6 +25,6 @@ public class FileInformationLoader : MonoBehaviour
     {
         string[] data = caseData.text.Split(new string[] { ",", "\n" }, StringSplitOptions.None);
         LevelManager.instance.StoreCaseData(data);
-        Debug.Log("FileInformationLoader: Data stored.");
+        //Debug.Log("FileInformationLoader: Data stored.");
     }
 }

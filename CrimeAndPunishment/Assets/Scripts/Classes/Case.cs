@@ -26,6 +26,6 @@ public class Case
     public void PrintCase()
     {
         string listedCase = $"Name: {this.name}\nAge:  {this.age}\nOccupation: {this.occupation}\nCase Code: {this.caseCode}\nCrime: {this.crime}\nCrime Date: {this.crimeDate}\nNotes; {this.notes}";
-        Debug.Log(listedCase);
+        //Debug.Log(listedCase);
     }
 }

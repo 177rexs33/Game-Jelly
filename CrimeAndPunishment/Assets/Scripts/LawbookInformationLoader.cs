@@ -25,7 +25,7 @@ public class LawbookInformationLoader : MonoBehaviour
     {
         string[] data = ruleData.text.Split(new string[] { ",", "\n" }, StringSplitOptions.None);
         LevelManager.instance.StoreRuleData(data);
-        Debug.Log("FileInformationLoader: rule sheet Data stored.");
+        //Debug.Log("FileInformationLoader: rule sheet Data stored.");
         LevelManager.instance.LoadLevel();
     }
 }

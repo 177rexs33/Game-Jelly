@@ -10,6 +10,7 @@ public class LevelManager : MonoBehaviour
     public List<Case> cases = new List<Case>();
     public List<Laws> rules = new List<Laws>();
     private static int totalLevels = 15;
+    public ButtonManager buttonManager;
     public int levelNumber = 1; // public for debugging (wackchamp)
     //private static int totalDays = 3;
     private static int casesPerDay = 5;
@@ -21,6 +22,7 @@ public class LevelManager : MonoBehaviour
     public TextMeshProUGUI fileDescription;
     public TextMeshProUGUI ruleSheet;
     public TextMeshProUGUI lawName;
+    public TextMeshProUGUI score;
     public static int caseColumns = 7; /// check that this matches the csv file
     public static int lawColumns = 1; /// check that deez RULEColumns matches the csv file
     public StampAnimator stampAnimator;
@@ -36,7 +38,7 @@ public class LevelManager : MonoBehaviour
         // Makes and manages the instance for LevelManager
         if (instance != null)
         {
-            Debug.Log("Level Manager: found more than one LM in the scene, the newest LM will be destroyed");
+            //Debug.Log("Level Manager: found more than one LM in the scene, the newest LM will be destroyed");
             Destroy(this.gameObject);
             return;
         }
@@ -73,7 +75,7 @@ public class LevelManager : MonoBehaviour
             dayNumber++;
         }
 
-        Debug.Log("LM: changing level to " + levelNumber);
+        //Debug.Log("LM: changing level to " + levelNumber);
 
         // Loads in new rule set if new day
         if (levelNumber % casesPerDay == 0)
@@ -83,7 +85,7 @@ public class LevelManager : MonoBehaviour
             // new day, trasition animation
             transCanvas.gameObject.SetActive(true);
             TransitionAnimator transitionAnimator = transAnimator.GetComponent<TransitionAnimator>();
-            Debug.Log("Day: " + dayNumber);
+            //Debug.Log("Day: " + dayNumber);
             transitionAnimator.SetDay(dayNumber);
             transitionAnimator.FadeOut();
 
@@ -93,6 +95,9 @@ public class LevelManager : MonoBehaviour
         }
 
         LoadLevel();
+        //Debug.Log(buttonManager.ReturnScore());
+        score.text = $"Score: {buttonManager.ReturnScore().ToString()}";
+        //Debug.Log(score.text);
     }
 
     public void UpdateRuleSheet()
@@ -111,6 +116,8 @@ public class LevelManager : MonoBehaviour
         fileCrimes.text = "Crime\n" + currentCase.crime.Replace(";","\n");
         fileCrimeDates.text = "Date\n" + currentCase.crimeDate.Replace(";", "\n");
         fileDescription.text = "Notes:\n" + currentCase.notes;
+       
+        
 
         
 
@@ -134,14 +141,14 @@ public class LevelManager : MonoBehaviour
         if ((levelNumber % casesPerDay != 0) && levelNumber > 1)
         {
             // reset buttons to charge buttons
-            Debug.Log("LM: callign fiule to enter");
+            //Debug.Log("LM: callign fiule to enter");
 
             
             ButtonManager.instance.SetFileAssessment(true);
             FileAnimator FA = fileAnimator.GetComponent<FileAnimator>();
-            Debug.Log(FA.state);
+            //Debug.Log(FA.state);
             FA.FileEnter();
-            Debug.Log(FA.state);
+            //Debug.Log(FA.state);
 
 
         }
@@ -174,7 +181,7 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("end of game");
+            //Debug.Log("end of game");
             //end of game, doing fade for now
 
             // vv this is not working for some reason...
@@ -185,6 +192,10 @@ public class LevelManager : MonoBehaviour
 
     }
 
+    public int ReturnLevel()
+    {
+        return levelNumber;
+    }
 
     public void StoreCaseData(string[] data)
     {
@@ -210,7 +221,7 @@ public class LevelManager : MonoBehaviour
             l.printLaws();
         }
 
-        Debug.Log(rules.Count);
+        //Debug.Log(rules.Count);
         
     }
 }
